@@ -1,0 +1,25 @@
+{
+  "name": "smartpick-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Backend API for SmartPick MERN application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --env-file=.env server.js",
+    "dev": "node --env-file=.env --watch server.js"
+  },
+  "dependencies": {
+    "axios": "^1.13.5",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.3.2",
+    "multer": "^1.4.5-lts.1",
+    "openai": "^6.22.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
