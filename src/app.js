@@ -15,10 +15,27 @@ import visionRoutes from "./routes/vision.routes.js";
 
 const app = express();
 
-app.use(cors({
-  origin: "http://localhost:5173",
-  credentials: true
-}));
+const allowedOrigins = new Set([
+  "http://localhost:5173",
+  "https://smartpick-3.web.app",
+  "https://smartpick-3.firebaseapp.com",
+  ...String(process.env.CORS_ORIGINS || "")
+    .split(",")
+    .map((v) => v.trim())
+    .filter(Boolean),
+]);
+
+app.use(
+  cors({
+    origin(origin, callback) {
+      // Allow non-browser tools and same-origin calls without an Origin header.
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.has(origin)) return callback(null, true);
+      return callback(new Error(`CORS blocked for origin: ${origin}`));
+    },
+    credentials: true,
+  })
+);
 
 app.use(express.json({ limit: "20mb" }));
 
